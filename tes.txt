@@ -1,1 +1,4 @@
 git commit -m "feat: init"
+git add
+git pull
+git push
