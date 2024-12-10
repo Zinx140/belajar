@@ -1,22 +1,24 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
-#include <string>
+#include <time.h>
 #include <vector>
 
 using namespace std;
 
-// Fungsi untuk menghasilkan semua kartu
-void generate_kartu(string cards[]) {
+void generate_kartu(string cards[])
+{
     string lambang[] = {"Waru", "Hati", "Wajik", "Keriting"};
     string angka[] = {"As", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Jack", "Queen", "King"};
 
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 13; j++) {
-            cards[i * 13 + j] = angka[j] + " " + lambang[i];
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 13; j++)
+        {
+            cards[i * 13 + j] = (angka[j] + " " + lambang[i]);
         }
     }
 }
+
 
 // Fungsi untuk menghitung nilai kartu
 int hitung_nilai(const vector<string>& hand) {
@@ -62,8 +64,32 @@ string tarik_kartu(string cards[], vector<string>& deck, int& size) {
     return card;
 }
 
-int main() {
+
+int main()
+{
+    const int total_kartu = 52;
+    string cards[total_kartu];
+    generate_kartu(cards);
+
+    // Mengacak kartu
     srand(time(0));
+    int kartu_terpilih = rand() % total_kartu;
+
+    string tebakan;
+    cout << "Selamat datang di permainan Tebak Kartu!" << endl;
+    cout << "Tebak nama kartu (contoh: As Waru, Tiga Hati, Queen Wajik): " << endl;
+
+    // Looping sampai tebakan benar
+
+    if (tebakan == cards[kartu_terpilih])
+    {
+        cout << "Selamat! Tebakan Anda benar, kartu tersebut adalah " << cards[kartu_terpilih] << "." << endl;
+    }
+    else
+    {
+        cout << "Tebakan Anda salah. Coba lagi!" << endl;
+    }
+
     string cards[52];
     vector<string> player_hand, dealer_hand;
     int deck_size = 52;
